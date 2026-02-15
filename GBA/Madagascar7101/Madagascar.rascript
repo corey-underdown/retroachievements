@@ -1,116 +1,177 @@
 // Madagascar
 // #ID = 7101
-// MD5: 97af9c00a5718832b7e5e46f9e434820
 
-achievement(
-    title = "Complete Opeartion: Zoo Askew", points = 0,
-    description = "Complete Opeartion: Zoo Askew",
-    id = 584181, badge = "00000", published = "15/02/2026 5:36:44 AM", modified = "15/02/2026 5:36:44 AM",
-    trigger = byte(0x00FFEC) != prev(byte(0x00FFEC)) && byte(0x00FFEC) == 15 && byte(0x00E408) == 0 &&
-              byte(0x00E40C) == 6
-)
+/*
+0x5 - max health
+0x0 - no health, dead
+*/
+function current_health() => byte(0x00e48c)
 
-achievement(
-    title = "Complete Subway Surfers", points = 0,
-    description = "Complete Subway Surfers",
-    id = 584182, badge = "00000", published = "15/02/2026 5:37:16 AM", modified = "15/02/2026 5:38:03 AM",
-    trigger = byte(0x00FFEC) != prev(byte(0x00FFEC)) && byte(0x00FFEC) == 15 && byte(0x00E408) == 0 &&
-              byte(0x00E40C) == 7
-)
+/*
+0x03 - Sleep menu
+0x04 - Sound menu
+0x08 - Pause menu
+0x0c - Level Select
+0x0d - In level gameplay
+0x0f - Level win
+0x10 - Dead (0 health, fell in water)
+0x11 - Cutscene
+*/
+function current_game_state() => byte(0x00ffec)
 
-achievement(
-    title = "Complete Opeartion: Ship Sneak", points = 0,
-    description = "Complete Opeartion: Ship Sneak",
-    id = 584183, badge = "00000", published = "15/02/2026 5:37:51 AM", modified = "15/02/2026 5:37:51 AM",
-    trigger = byte(0x00FFEC) != prev(byte(0x00FFEC)) && byte(0x00FFEC) == 15 && byte(0x00E408) == 0 &&
-              byte(0x00E40C) == 8
-)
+/*
+0x00 - Adventure Mode
+0x01 - Bonus Mode
+*/
+function game_mode_selected() => byte(0x00E408)
 
-achievement(
-    title = "Complete On the Beach", points = 0,
-    description = "Complete On the Beach",
-    id = 584184, badge = "00000", published = "15/02/2026 5:38:37 AM", modified = "15/02/2026 5:39:23 AM",
-    trigger = byte(0x00FFEC) != prev(byte(0x00FFEC)) && byte(0x00FFEC) == 15 && byte(0x00E408) == 0 &&
-              byte(0x00E40C) == 9
-)
+/*
+When 0x00e408 is 0x0, values are adventure levels
+0x00 - [Alex tutorial]
+0x01 - [Marty Tutorial]
+0x02 - [Melman tutorial]
+0x03 - [Gloria tutorial]
+0x04 - Daily Grind
+0x05 - Marty's Crawl [Tutorial]
+0x06 - Operation: Zoo Askew
+0x07 - Subway surfers
+0x08 - Operation: Ship Sneak
+0x09 - On the Beach
+0x0a - Jungle Dub
+0x0b - Lemur Rave
+0x0c - Melman's Sneeze Jump [Tutorial]
+0x0d - Lemur Liberation
+0x0e - Wild World
+0x0f - Alex's Claws [Tutorial]
+0x10 - Alex's Escape
+0x11 - Gloria's Dive [Tutorial]
+0x12 - Island Getaway
+0x13 - Marty to the Rescue
+0x14 - Alex's Claw Climb [Tutorial]
+0x15 - Foosa Lair
+0x16 - Foosa Arena
 
-achievement(
-    title = "Complete Jungle Dub", points = 0,
-    description = "Complete Jungle Dub",
-    id = 584185, badge = "00000", published = "15/02/2026 5:39:12 AM", modified = "15/02/2026 5:39:12 AM",
-    trigger = byte(0x00FFEC) != prev(byte(0x00FFEC)) && byte(0x00FFEC) == 15 && byte(0x00E408) == 0 &&
-              byte(0x00E40C) == 10
-)
+When 0x00e408 is 0x0, values are bonus levels
+0x00 - Marty's Crawl
+0x01 - Operation: Zoo Askew
+0x02 - Operation: Ship Sneak
+0x03 - Lemur Rave
+0x04 - Melman's Sneeze Jump
+0x05 - Alex's Claws
+0x06 - Gloria's Dive
+0x07 - Alex's Claw Climb
+*/
+function level_selected() => byte(0x00E40C)
 
-achievement(
-    title = "Complete Lemur Rave", points = 0,
-    description = "Complete Lemur Rave",
-    id = 584186, badge = "00000", published = "15/02/2026 5:39:57 AM", modified = "15/02/2026 5:39:57 AM",
-    trigger = byte(0x00FFEC) != prev(byte(0x00FFEC)) && byte(0x00FFEC) == 15 && byte(0x00E408) == 0 &&
-              byte(0x00E40C) == 11
-)
+function coin_total_daily_grind() => byte(0x00DD9C) //Max 85
+function coin_total_operation_zoo_askew() => byte(0x00dda0) //Max 20
+function coin_total_subway_surfers() => byte(0x00dda2) //Max 75
+function coin_total_operation_ship_sneak() => byte(0x00dda4) //Max 20
+function coin_total_on_the_beach() => byte(0x00dda6) //Max 120
+function coin_total_jungle_dub() => byte(0x00dda8) //Max 130
+function coin_total_lemur_liberation() => byte(0x00ddae) //Max 75
+function coin_total_wild_world() => byte(0x00ddb0) //Max 120
+function coin_total_alexs_escape() => byte(0x00ddb4) //Max 120
+function coin_total_island_getaway() => byte(0x00DDB8) //Max 120
+function coin_total_marty_to_the_rescue() => byte(0x00ddba) //125
+function coin_total_foosa_lair() => byte(0x00DDBE) //Max 110
 
-achievement(
-    title = "Complete 'Daily Grind'", points = 0, type="progression",
-    description = "Complete 'Daily Grind'",
-    id = 584131, badge = "00000", published = "14/02/2026 11:14:17 PM", modified = "15/02/2026 4:50:35 AM",
-    trigger = byte(0x00FFEC) != prev(byte(0x00FFEC)) && byte(0x00FFEC) == 15 && byte(0x00E408) == 0 &&
-              byte(0x00E40C) == 4
-)
 
-achievement(
-    title = "Complete 'Foosa Arena'", points = 0, type="win_condition",
-    description = "Complete 'Foosa Arena'",
-    id = 584180, badge = "00000", published = "15/02/2026 5:19:38 AM", modified = "15/02/2026 5:19:38 AM",
-    trigger = byte(0x00FFEC) != prev(byte(0x00FFEC)) && byte(0x00FFEC) == 15 && byte(0x00E408) == 0 &&
-              byte(0x00E40C) == 22
-)
 
-achievement(
-    title = "Collect all 85 coins in 'Daily Grind'", points = 0,
-    description = "Collect all 85 coins in 'Daily Grind'",
-    id = 584133, badge = "00000", published = "15/02/2026 12:13:56 AM", modified = "15/02/2026 4:51:37 AM",
-    trigger = byte(0x00E408) == 0 && byte(0x00E40C) == 4 && byte(0x00DD9C) > prev(byte(0x00DD9C)) &&
-              byte(0x00DD9C) >= 85
-)
 
-achievement(
-    title = "Collect all 120 coins in 'Island Getaway'", points = 0,
-    description = "Collect all coins in Island Getaway",
-    id = 584164, badge = "00000", published = "15/02/2026 4:46:33 AM", modified = "15/02/2026 4:51:37 AM",
-    trigger = byte(0x00E408) == 0 && prev(byte(0x00FFEC)) == 15 && byte(0x00DDB8) > prev(byte(0x00DDB8)) &&
-              byte(0x00DDB8) >= 120
-)
+/* Complete level achievements */
+function achievement_complete_level(level_name, desc, level_id, points, achievement_id)
+{
+    achievement(
+    title = "Complete " + level_name, points = points, type="progression",
+    description = "Complete " + level_name,
+    id = achievement_id,
+    trigger = current_game_state() != prev(current_game_state()) && current_game_state() == 15 && game_mode_selected() == 0 &&
+              level_selected() == level_id
+    )
+}
 
-achievement(
-    title = "Collect all 110 coins in \"Foosa's Lair\"", points = 0,
-    description = "Collect all 110 coins in \"Foosa's Lair\"",
-    id = 584179, badge = "00000", published = "15/02/2026 5:09:40 AM", modified = "15/02/2026 5:09:40 AM",
-    trigger = byte(0x00E408) == 0 && prev(byte(0x00FFEC)) == 15 && byte(0x00DDBE) > prev(byte(0x00DDBE)) &&
-              byte(0x00DDBE) >= 110
-)
+function achievement_complete_level_win(level_name, desc, level_id, points, achievement_id)
+{
+    achievement(
+    title = "Complete " + level_name, points = points, type="win_condition",
+    description = "Complete " + level_name,
+    id = achievement_id,
+    trigger = current_game_state() != prev(current_game_state()) && current_game_state() == 15 && game_mode_selected() == 0 &&
+              level_selected() == level_id
+    )
+}
+
+achievement_complete_level("Daily Grind", "Daily Grind", 4, 0, 584131)
+achievement_complete_level("Opeartion: Zoo Askew", "Opeartion: Zoo Askew", 6, 0, 584181)
+achievement_complete_level("Subway Surfers", "Subway Surfers", 7, 0, 584182)
+achievement_complete_level("Opeartion: Ship Sneak", "Opeartion: Ship Sneak", 8, 0, 584183)
+achievement_complete_level("On the Beach", "On the Beach", 9, 0, 584184)
+achievement_complete_level("Jungle Dub", "Jungle Dub", 10, 0, 584185)
+achievement_complete_level("Lemur Rave", "Complete Lemur Rave", 11, 0, 584186)
+achievement_complete_level("Lemur Liberation", "Lemur Liberation", 13, 0, 584187)
+achievement_complete_level("Wild World", "Wild World", 14, 0, 584188)
+achievement_complete_level("Alex's Escape", "Alex's Escape", 16, 0, 584189)
+achievement_complete_level("Island Getaway", "Island Getaway", 18, 0, 584190)
+achievement_complete_level("Marty to the Rescue", "Marty to the Rescue", 19, 0, 584191)
+achievement_complete_level("Foosa Lair", "Foosa Lair", 21, 0, 584192)
+achievement_complete_level_win("Foosa Arena", "Foosa Arena", 22, 0, 584180)
+
+
+
+
+
+/* Collect Coins Achievements */
+function achievement_collect_all_level_coins(level_name, desc, level_coin_count_byte, total_coins, points, achievement_id)
+{
+    achievement(
+    title = "Collect all " + total_coins + " coins in '" + level_name + "'", points = points,
+    description = "Collect all coins in " + level_name,
+    id = achievement_id,
+    trigger = game_mode_selected() == 0 && prev(current_game_state()) == 15 && level_coin_count_byte > prev(level_coin_count_byte) &&
+              level_coin_count_byte >= total_coins
+    )
+}
+
+achievement_collect_all_level_coins("Daily Grind", "Daily Grind", coin_total_daily_grind(), 85, 0, 584133)
+achievement_collect_all_level_coins("Opeartion: Zoo Askew", "Opeartion: Zoo Askew", coin_total_operation_zoo_askew(), 20, 0, 584430)
+achievement_collect_all_level_coins("Subway Surfers", "Subway Surfers", coin_total_subway_surfers(), 75, 0, 584432)
+achievement_collect_all_level_coins("Opeartion: Ship Sneak", "Opeartion: Ship Sneak", coin_total_operation_ship_sneak(), 20, 0, 584433)
+achievement_collect_all_level_coins("On the Beach", "On the Beach", coin_total_on_the_beach(), 120, 0, 584436)
+achievement_collect_all_level_coins("Jungle Dub", "Jungle Dub", coin_total_jungle_dub(), 120, 0, 584437)
+achievement_collect_all_level_coins("Lemur Liberation", "Lemur Liberation", coin_total_lemur_liberation(), 75, 0, 584438)
+achievement_collect_all_level_coins("Wild World", "Wild World", coin_total_wild_world(), 120, 0, 584439)
+achievement_collect_all_level_coins("Alex's Escape", "Alex's Escape", coin_total_alexs_escape(), 120, 0, 584440)
+achievement_collect_all_level_coins("Island Getaway", "Island Getaway", coin_total_island_getaway(), 120, 0, 584164)
+achievement_collect_all_level_coins("Marty to the Rescue", "Marty to the Rescue", coin_total_marty_to_the_rescue(), 125, 0, 584441)
+achievement_collect_all_level_coins("Foosa Lair", "Foosa Lair", coin_total_foosa_lair(), 110, 0, 584179)
+
+
+
+
+
+
+
 
 achievement(
     title = "Complete Operation: Zoo Askew without alerting guards", points = 0,
     description = "Complete Operation: Zoo Askew without alerting guards [Exit to menu to try again]",
     id = 584150, badge = "00000", published = "15/02/2026 1:38:25 AM", modified = "15/02/2026 1:38:25 AM",
-    trigger = byte(0x00E408) == 0 && byte(0x00E40C) == 6 && once(prev(byte(0x00FFEC)) == 17) &&
-              once(byte(0x00FFEC) == 13) && trigger_when(byte(0x00FFEC) == 15) && never(byte(0x00FFEC) == 12) &&
+    trigger = game_mode_selected() == 0 && level_selected() == 6 && once(prev(current_game_state()) == 17) &&
+              once(current_game_state() == 13) && trigger_when(current_game_state() == 15) && never(current_game_state() == 12) &&
               never(byte(0x00E484) < 5)
 )
 
 achievement(
     title = "Beat Lemur Rave without losing any health", points = 0,
     description = "Beat Lemur Rave without losing any health",
-    id = 584163, badge = "00000", published = "15/02/2026 4:18:48 AM", modified = "15/02/2026 4:18:48 AM",
-    trigger = byte(0x00E408) == 0 && byte(0x00E40C) == 11 && once(byte(0x00FFEC) == 13) && byte(0x00E48C) >= 5 &&
-              trigger_when(byte(0x00FFEC) == 15) && never((byte(0x00FFEC) != 15 && byte(0x00FFEC) != 13))
+    trigger = game_mode_selected() == 0 && level_selected() == 11 && once(current_game_state() == 13) && current_health() >= 5 &&
+              trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
 )
 
 achievement(
     title = "Beat Marty's time in Marty's Crawl Bonus", points = 0,
     description = "Beat Marty's time in Marty's Crawl Bonus [beat 1m:00s]",
-    id = 584138, badge = "00000", published = "15/02/2026 12:45:28 AM", modified = "15/02/2026 1:07:29 AM",
-    trigger = byte(0x00E408) == 1 && byte(0x00E40C) == 0 && once(byte(0x00FFEC) == 13) && dword(0x0103D4) <= 3599 &&
-              trigger_when(byte(0x00FFEC) == 15) && never((byte(0x00FFEC) != 15 && byte(0x00FFEC) != 13))
+    trigger = game_mode_selected() == 1 && level_selected() == 0 && once(current_game_state() == 13) && dword(0x0103D4) <= 3599 &&
+              trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
 )
