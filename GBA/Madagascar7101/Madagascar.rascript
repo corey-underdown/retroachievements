@@ -180,18 +180,6 @@ achievement_complete_stealth_level_without_alerting_guard("Opeartion: Zoo Askew"
 achievement_complete_stealth_level_without_alerting_guard("Opeartion: Ship Sneak", 8, 0, 584577)
 
 
-
-
-
-achievement(
-    title = "Beat Lemur Rave without losing any health", points = 0,
-    description = "Beat Lemur Rave without losing any health",
-    trigger = game_mode_selected() == 0 && level_selected() == 11 && once(current_game_state() == 13) && current_health() >= 5 &&
-              trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
-)
-
-
-
 function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, best_time_dword, seconds_to_beat, points, achievement_id) {
     achievement(
     title = title, 
@@ -233,7 +221,15 @@ achievement_beat_character_time_in_bonus_stage(
     584717
 )
 
-// TODO: Melman's time in Lemur Rave (points based instead of time, trying to be higher vs lower)
+// Melman's Lemur Rave scores the opposite direction - want to be higher than his score, vs the others where you want to lower than their time
+achievement(
+    title = "Beat Melman's score in bonus stage Lemur Rave", 
+    points = 0,
+    description = "Beat Melman's score in bonus stage Lemur Rave",
+    id = 584718,
+    trigger = game_mode_selected() == 1 && level_selected() == 3 && current_game_state() == 15 
+        && best_score_bonus_lemur_rave() > prev(best_score_bonus_lemur_rave()) && best_score_bonus_lemur_rave() > 150
+    )
 
 achievement_beat_character_time_in_bonus_stage(
     "Beat Melman's time in bonus stage Melman's Sneeze Jump",
@@ -277,8 +273,12 @@ achievement_beat_character_time_in_bonus_stage(
 )
 
 
-
-
+achievement(
+    title = "Beat Lemur Rave without losing any health", points = 0,
+    description = "Beat Lemur Rave without losing any health",
+    trigger = game_mode_selected() == 0 && level_selected() == 11 && once(current_game_state() == 13) && current_health() >= 5 &&
+              trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
+)
 
 
 
