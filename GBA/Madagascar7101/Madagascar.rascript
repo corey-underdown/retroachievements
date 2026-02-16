@@ -81,7 +81,14 @@ function coin_total_island_getaway() => byte(0x00DDB8) //Max 120
 function coin_total_marty_to_the_rescue() => byte(0x00ddba) //125
 function coin_total_foosa_lair() => byte(0x00DDBE) //Max 110
 
-function stage_timer() => dword(0x0103D4)
+function best_time_seconds_bonus_martys_crawl() => dword(0x0102a0)
+function best_time_seconds_bonus_operation_zoo_askew() => dword(0x0102b8)
+function best_time_seconds_bonus_opeartion_ship_sneak() => dword(0x0102d0)
+function best_score_bonus_lemur_rave() => dword(0x0102e4)
+function best_time_seconds_bonus_melmans_sneeze() => dword(0x010300)
+function best_time_seconds_bonus_alexs_claws() => dword(0x010318)
+function best_time_seconds_bonus_glorias_dive() => dword(0x010330)
+function best_time_seconds_bonus_alexs_claw_climb() => dword(0x010348)
 
 
 /* Complete level achievements */
@@ -183,9 +190,106 @@ achievement(
               trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
 )
 
-achievement(
-    title = "Beat Marty's time in Marty's Crawl Bonus", points = 0,
-    description = "Beat Marty's time in Marty's Crawl Bonus [beat 1m:00s]",
-    trigger = game_mode_selected() == 1 && level_selected() == 0 && once(current_game_state() == 13) && stage_timer() <= 3599 &&
-              trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
+
+
+function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, best_time_dword, seconds_to_beat, points, achievement_id) {
+    achievement(
+    title = title, 
+    points = points,
+    description = desc,
+    id = achievement_id,
+    trigger = game_mode_selected() == 1 && level_selected() == level_id && current_game_state() == 15 
+        && best_time_dword < prev(best_time_dword) && best_time_dword < seconds_to_beat
+    )
+}
+
+achievement_beat_character_time_in_bonus_stage(
+    "Beat Marty's time in bonus stage Marty's Crawl Bonus",
+    "Beat Marty's time in bonus stage Marty's Crawl [beat 1m:00s]",
+    0,
+    best_time_seconds_bonus_martys_crawl(),
+    60,
+    0,
+    584138
 )
+
+achievement_beat_character_time_in_bonus_stage(
+    "Beat Marty's time in bonus stage Operation: Zoo Askew",
+    "Beat Marty's time in bonus stage Operation: Zoo Askew [beat 2m:00s]",
+    1,
+    best_time_seconds_bonus_operation_zoo_askew(),
+    120,
+    0,
+    584716
+)
+
+achievement_beat_character_time_in_bonus_stage(
+    "Beat Skipper's time in bonus stage Operation: Ship Sneak",
+    "Beat Skipper's time in bonus stage Operation: Ship Sneak [beat 4m:15s]",
+    2,
+    best_time_seconds_bonus_opeartion_ship_sneak(),
+    255,
+    0,
+    584717
+)
+
+// TODO: Melman's time in Lemur Rave (points based instead of time, trying to be higher vs lower)
+
+achievement_beat_character_time_in_bonus_stage(
+    "Beat Melman's time in bonus stage Melman's Sneeze Jump",
+    "Beat Melman's time in bonus stage Melman's Sneeze Jump [beat 1m:00s]",
+    4,
+    best_time_seconds_bonus_melmans_sneeze(),
+    60,
+    0,
+    584718
+)
+
+achievement_beat_character_time_in_bonus_stage(
+    "Beat Alex's time in bonus stage Alex's Claws",
+    "Beat Alex's time in bonus stage Alex's Claws [beat 1m:15s]",
+    5,
+    best_time_seconds_bonus_alexs_claws(),
+    75,
+    0,
+    584719
+)
+
+achievement_beat_character_time_in_bonus_stage(
+    "Beat Gloria's time in bonus stage Gloria's Dive",
+    "Beat Gloria's time in bonus stage Gloria's Dive [beat 1m:15s]",
+    6,
+    best_time_seconds_bonus_glorias_dive(),
+    75,
+    0,
+    584720
+)
+
+
+achievement_beat_character_time_in_bonus_stage(
+    "Beat Alex's time in bonus stage Alex's Claw Climb",
+    "Beat Alex's time in bonus stage Alex's Claw Climb [beat 1m:30s]",
+    7,
+    best_time_seconds_bonus_alexs_claw_climb(),
+    90,
+    0,
+    584721
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
