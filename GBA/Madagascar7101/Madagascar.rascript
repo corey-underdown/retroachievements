@@ -90,6 +90,8 @@ function best_time_seconds_bonus_alexs_claws() => dword(0x010318)
 function best_time_seconds_bonus_glorias_dive() => dword(0x010330)
 function best_time_seconds_bonus_alexs_claw_climb() => dword(0x010348)
 
+function counter_saved_lemurs_foosa_lair() => byte(0x010440)
+
 
 /* Complete level achievements */
 function achievement_complete_level(level_name, desc, level_id, points, achievement_id)
@@ -225,7 +227,7 @@ achievement_beat_character_time_in_bonus_stage(
 achievement(
     title = "Beat Melman's score in bonus stage Lemur Rave", 
     points = 0,
-    description = "Beat Melman's score in bonus stage Lemur Rave",
+    description = "Beat Melman's score in bonus stage Lemur Rave [Beat 150 points]",
     id = 584718,
     trigger = game_mode_selected() == 1 && level_selected() == 3 && current_game_state() == 15 
         && best_score_bonus_lemur_rave() > prev(best_score_bonus_lemur_rave()) && best_score_bonus_lemur_rave() > 150
@@ -280,7 +282,12 @@ achievement(
               trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
 )
 
-
+achievement(
+    title = "Beat Foosa Lair without losing any Lemurs", points = 0,
+    description = "Beat Foosa Lair without losing any Lemurs",
+    trigger = game_mode_selected() == 0 && level_selected() == 16 && once(current_game_state() == 13) && once(counter_saved_lemurs_foosa_lair() == 0)
+        && trigger_when(current_game_state() == 15) && never(current_game_state() == 12) && never(counter_saved_lemurs_foosa_lair() < prev(counter_saved_lemurs_foosa_lair()))
+)
 
 
 
