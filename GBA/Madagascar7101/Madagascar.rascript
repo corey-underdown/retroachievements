@@ -8,6 +8,11 @@
 function current_health() => byte(0x00e48c)
 
 /*
+
+*/
+function guard_alert_level() => byte(0x00E484)
+
+/*
 0x03 - Sleep menu
 0x04 - Sound menu
 0x08 - Pause menu
@@ -76,7 +81,7 @@ function coin_total_island_getaway() => byte(0x00DDB8) //Max 120
 function coin_total_marty_to_the_rescue() => byte(0x00ddba) //125
 function coin_total_foosa_lair() => byte(0x00DDBE) //Max 110
 
-
+function stage_timer() => dword(0x0103D4)
 
 
 /* Complete level achievements */
@@ -151,16 +156,25 @@ achievement_collect_all_level_coins("Foosa Lair", "Foosa Lair", coin_total_foosa
 
 
 
-
-
-achievement(
-    title = "Complete Operation: Zoo Askew without alerting guards", points = 0,
-    description = "Complete Operation: Zoo Askew without alerting guards [Exit to menu to try again]",
-    id = 584150, badge = "00000", published = "15/02/2026 1:38:25 AM", modified = "15/02/2026 1:38:25 AM",
-    trigger = game_mode_selected() == 0 && level_selected() == 6 && once(prev(current_game_state()) == 17) &&
+/* Stealth missions, don't alert guards */
+function achievement_complete_stealth_level_without_alerting_guard(level_name, level_id, points, achievement_id)
+{
+    achievement(
+    title = "Complete " + level_name + " without alerting guards", points = points,
+    description = "Complete " + level_name + " without alerting guards [Exit to level select to try again]",
+    id = achievement_id,
+    trigger = game_mode_selected() == 0 && level_selected() == level_id && once(prev(current_game_state()) == 17) &&
               once(current_game_state() == 13) && trigger_when(current_game_state() == 15) && never(current_game_state() == 12) &&
-              never(byte(0x00E484) < 5)
-)
+              never(guard_alert_level() < 5)
+    )
+}
+
+achievement_complete_stealth_level_without_alerting_guard("Opeartion: Zoo Askew", 6, 0, 584150)
+achievement_complete_stealth_level_without_alerting_guard("Opeartion: Ship Sneak", 8, 0, 584577)
+
+
+
+
 
 achievement(
     title = "Beat Lemur Rave without losing any health", points = 0,
@@ -172,6 +186,6 @@ achievement(
 achievement(
     title = "Beat Marty's time in Marty's Crawl Bonus", points = 0,
     description = "Beat Marty's time in Marty's Crawl Bonus [beat 1m:00s]",
-    trigger = game_mode_selected() == 1 && level_selected() == 0 && once(current_game_state() == 13) && dword(0x0103D4) <= 3599 &&
+    trigger = game_mode_selected() == 1 && level_selected() == 0 && once(current_game_state() == 13) && stage_timer() <= 3599 &&
               trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
 )
