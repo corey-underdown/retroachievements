@@ -22,6 +22,15 @@ function guard_alert_level() => byte(0x00E484)
 0x10 - Dead (0 health, fell in water)
 0x11 - Cutscene
 */
+game_state_main_menu = 1
+game_state_sleep_menu = 3
+game_state_sound_menu = 4
+game_state_pause_menu = 8
+game_state_level_select = 12
+game_state_in_level_gameplay = 13
+game_state_level_win = 15
+game_state_dead = 16
+game_state_cutscene = 17
 function current_game_state() => byte(0x00ffec)
 
 /*
@@ -91,6 +100,77 @@ function best_time_seconds_bonus_glorias_dive() => dword(0x010330)
 function best_time_seconds_bonus_alexs_claw_climb() => dword(0x010348)
 
 function counter_saved_lemurs_foosa_lair() => byte(0x010440)
+
+function save_file_initial_1() => byte(0x00e404)
+function save_file_initial_2() => byte(0x00e405)
+function save_file_initial_3() => byte(0x00e406)
+
+function total_coins_collected_daily_grind() => byte(0x00dd9c)
+function total_coins_collected_operation_zoo_askew() => byte(0x00dda0)
+function total_coins_collected_subway_surfers() => byte(0x00dda2)
+function total_coins_collected_ship_sneak() => byte(0x00dda4)
+function total_coins_collected_on_the_beach() => byte(0x00dda6)
+function total_coins_collected_jungle_dub() => byte(0x00dda8)
+function total_coins_collected_lemur_liberation() => byte(0x00ddae)
+function total_coins_collected_wild_world() => byte(0x00ddb0)
+function total_coins_collected_alexs_escape() => byte(0x00ddb4)
+function total_coins_collected_island_getaway() => byte(0x00ddb8)
+function total_coins_collected_marty_to_the_rescue() => byte(0x00ddba)
+function total_coins_collected_foosa_lair() => byte(0x00ddbe)
+
+function total_coins_collected_game() => total_coins_collected_daily_grind()
++ total_coins_collected_operation_zoo_askew()
++ total_coins_collected_subway_surfers()
++ total_coins_collected_ship_sneak() 
++ total_coins_collected_on_the_beach()
++ total_coins_collected_jungle_dub()
++ total_coins_collected_lemur_liberation()
++ total_coins_collected_wild_world()
++ total_coins_collected_alexs_escape()
++ total_coins_collected_island_getaway()
++ total_coins_collected_marty_to_the_rescue()
++ total_coins_collected_foosa_lair()
+
+adventure_levels = { 
+    0: "Alex's Tutorial", 
+    1: "Marty's Tutorial",
+    2: "Melman's Tutorial",
+    3: "Gloria's Tutorial",
+    4: "Daily Grind",
+    5: "Marty's Crawl",
+    6: "Operation: Zoo Askew",
+    7: "Subway surfers",
+    8: "Operation: Ship Sneak",
+    9: "On the Beach",
+    10: "Jungle Dub",
+    11: "Lemur Rave",
+    12: "Melman's Sneeze Jump",
+    13: "Lemur Liberation",
+    14: "Wild World",
+    15: "Alex's Claws",
+    16: "Alex's Escape",
+    17: "Gloria's Dive",
+    18: "Island Getaway",
+    19: "Marty to the Rescue",
+    20: "Alex's Claw Climb",
+    21: "Foosa Lair",
+    22: "Foosa Arena"
+}
+
+function is_playing_level() => current_game_state() == game_state_in_level_gameplay 
+|| current_game_state() == game_state_sleep_menu
+|| current_game_state() == game_state_pause_menu
+|| current_game_state() == game_state_sound_menu
+|| current_game_state() == game_state_dead
+
+/* Rich presence display */
+rich_presence_conditional_display(is_playing_level(), "{0}{1}{2} is playing {3} - 💰{4}/1,120",
+    rich_presence_macro("ASCIIChar", save_file_initial_1()),
+    rich_presence_macro("ASCIIChar", save_file_initial_2()),
+    rich_presence_macro("ASCIIChar", save_file_initial_3()),
+    rich_presence_lookup("Level", level_selected(), adventure_levels),
+    rich_presence_value("Total Coins Collected", total_coins_collected_game()))
+rich_presence_display("Player is selected a level to play")
 
 
 /* Complete level achievements */
