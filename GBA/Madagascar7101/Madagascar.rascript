@@ -37,6 +37,8 @@ function current_game_state() => byte(0x00ffec)
 0x00 - Adventure Mode
 0x01 - Bonus Mode
 */
+game_mode_adventure = 0
+game_mode_bonus = 1
 function game_mode_selected() => byte(0x00E408)
 
 /*
@@ -180,7 +182,7 @@ function achievement_complete_level(level_name, desc, level_id, points, achievem
     title = "Complete " + level_name, points = points, type="progression",
     description = "Complete " + level_name,
     id = achievement_id,
-    trigger = current_game_state() != prev(current_game_state()) && current_game_state() == 15 && game_mode_selected() == 0 &&
+    trigger = current_game_state() != prev(current_game_state()) && current_game_state() == game_state_level_win && game_mode_selected() == game_mode_adventure &&
               level_selected() == level_id
     )
 }
@@ -191,7 +193,7 @@ function achievement_complete_level_win(level_name, desc, level_id, points, achi
     title = "Complete " + level_name, points = points, type="win_condition",
     description = "Complete " + level_name,
     id = achievement_id,
-    trigger = current_game_state() != prev(current_game_state()) && current_game_state() == 15 && game_mode_selected() == 0 &&
+    trigger = current_game_state() != prev(current_game_state()) && current_game_state() == game_state_level_win && game_mode_selected() == game_mode_adventure &&
               level_selected() == level_id
     )
 }
@@ -222,7 +224,7 @@ function achievement_collect_all_level_coins(level_name, desc, level_coin_count_
     title = "Collect all " + total_coins + " coins in '" + level_name + "'", points = points,
     description = "Collect all coins in " + level_name,
     id = achievement_id,
-    trigger = game_mode_selected() == 0 && prev(current_game_state()) == 15 && level_coin_count_byte > prev(level_coin_count_byte) &&
+    trigger = game_mode_selected() == game_mode_adventure && prev(current_game_state()) == game_state_level_win && level_coin_count_byte > prev(level_coin_count_byte) &&
               level_coin_count_byte >= total_coins
     )
 }
@@ -252,8 +254,8 @@ function achievement_complete_stealth_level_without_alerting_guard(level_name, l
     title = "Complete " + level_name + " without alerting guards", points = points,
     description = "Complete " + level_name + " without alerting guards [Exit to level select to try again]",
     id = achievement_id,
-    trigger = game_mode_selected() == 0 && level_selected() == level_id && once(prev(current_game_state()) == 17) &&
-              once(current_game_state() == 13) && trigger_when(current_game_state() == 15) && never(current_game_state() == 12) &&
+    trigger = game_mode_selected() == game_mode_adventure && level_selected() == level_id && once(prev(current_game_state()) == game_state_cutscene) &&
+              once(current_game_state() == game_state_in_level_gameplay) && trigger_when(current_game_state() == game_state_level_win) && never(current_game_state() == 12) &&
               never(guard_alert_level() < 5)
     )
 }
@@ -268,7 +270,7 @@ function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, b
     points = points,
     description = desc,
     id = achievement_id,
-    trigger = game_mode_selected() == 1 && level_selected() == level_id && current_game_state() == 15 
+    trigger = game_mode_selected() == game_mode_bonus && level_selected() == level_id && current_game_state() == game_state_level_win 
         && best_time_dword < prev(best_time_dword) && best_time_dword < seconds_to_beat
     )
 }
@@ -309,7 +311,7 @@ achievement(
     points = 0,
     description = "Beat Melman's score in bonus stage Lemur Rave [Beat 150 points]",
     id = 584718,
-    trigger = game_mode_selected() == 1 && level_selected() == 3 && current_game_state() == 15 
+    trigger = game_mode_selected() == game_mode_bonus && level_selected() == 3 && current_game_state() == game_state_level_win 
         && best_score_bonus_lemur_rave() > prev(best_score_bonus_lemur_rave()) && best_score_bonus_lemur_rave() > 150
     )
 
@@ -358,15 +360,17 @@ achievement_beat_character_time_in_bonus_stage(
 achievement(
     title = "Beat Lemur Rave without losing any health", points = 0,
     description = "Beat Lemur Rave without losing any health",
-    trigger = game_mode_selected() == 0 && level_selected() == 11 && once(current_game_state() == 13) && current_health() >= 5 &&
-              trigger_when(current_game_state() == 15) && never((current_game_state() != 15 && current_game_state() != 13))
+    id = 584163,
+    trigger = game_mode_selected() == game_mode_adventure && level_selected() == 11 && once(current_game_state() == game_state_in_level_gameplay) && current_health() >= 5 &&
+              trigger_when(current_game_state() == game_state_level_win) && never((current_game_state() != game_state_level_win && current_game_state() != game_state_in_level_gameplay))
 )
 
 achievement(
     title = "Beat Foosa Lair without losing any Lemurs", points = 0,
     description = "Beat Foosa Lair without losing any Lemurs",
-    trigger = game_mode_selected() == 0 && level_selected() == 16 && once(current_game_state() == 13) && once(counter_saved_lemurs_foosa_lair() == 0)
-        && trigger_when(current_game_state() == 15) && never(current_game_state() == 12) && never(counter_saved_lemurs_foosa_lair() < prev(counter_saved_lemurs_foosa_lair()))
+    id = 584894,
+    trigger = game_mode_selected() == game_mode_adventure && level_selected() == 16 && once(current_game_state() == game_state_in_level_gameplay) && once(counter_saved_lemurs_foosa_lair() == 0)
+        && trigger_when(current_game_state() == game_state_level_win) && never(current_game_state() == 12) && never(counter_saved_lemurs_foosa_lair() < prev(counter_saved_lemurs_foosa_lair()))
 )
 
 
