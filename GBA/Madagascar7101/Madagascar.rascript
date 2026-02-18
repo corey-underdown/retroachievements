@@ -26,6 +26,7 @@ game_state_main_menu = 1
 game_state_sleep_menu = 3
 game_state_sound_menu = 4
 game_state_pause_menu = 8
+game_state_gamemode_select = 11
 game_state_level_select = 12
 game_state_in_level_gameplay = 13
 game_state_level_win = 15
@@ -159,20 +160,53 @@ adventure_levels = {
     22: "Foosa Arena"
 }
 
+bonus_levels = {
+    0: "Marty's Crawl",
+    1: "Operation: Zoo Askew",
+    2: "Operation: Ship Sneak",
+    3: "Lemur Rave",
+    4: "Melman's Sneeze Jump",
+    5: "Alex's Claws",
+    6: "Gloria's Dive",
+    7: "Alex's Claw Climb"
+}
+
 function is_playing_level() => current_game_state() == game_state_in_level_gameplay 
 || current_game_state() == game_state_sleep_menu
 || current_game_state() == game_state_pause_menu
 || current_game_state() == game_state_sound_menu
 || current_game_state() == game_state_dead
 
+function is_playing_adventure_level() => is_playing_level() && game_mode_selected() == game_mode_adventure
+function is_playing_bonus_level() => is_playing_level() && game_mode_selected() == game_mode_bonus
+function is_on_level_select() => current_game_state() == game_state_level_select || current_game_state() == game_state_gamemode_select
+
 /* Rich presence display */
-rich_presence_conditional_display(is_playing_level(), "{0}{1}{2} is playing {3} - 💰{4}/1,120",
+// Conditional: Playing adventure level
+rich_presence_conditional_display(is_playing_adventure_level(), "{0}{1}{2} is playing adventure level '{3}' - 💰{4}/1,120",
     rich_presence_macro("ASCIIChar", save_file_initial_1()),
     rich_presence_macro("ASCIIChar", save_file_initial_2()),
     rich_presence_macro("ASCIIChar", save_file_initial_3()),
-    rich_presence_lookup("Level", level_selected(), adventure_levels),
+    rich_presence_lookup("AdventureLevel", level_selected(), adventure_levels),
     rich_presence_value("Total Coins Collected", total_coins_collected_game()))
-rich_presence_display("Player is selected a level to play")
+    
+// Conditional: Playing bonus level
+rich_presence_conditional_display(is_playing_bonus_level(), "{0}{1}{2} is playing bonus level '{3}' - 💰{4}/1,120",
+    rich_presence_macro("ASCIIChar", save_file_initial_1()),
+    rich_presence_macro("ASCIIChar", save_file_initial_2()),
+    rich_presence_macro("ASCIIChar", save_file_initial_3()),
+    rich_presence_lookup("BonusLevel", level_selected(), bonus_levels),
+    rich_presence_value("Total Coins Collected", total_coins_collected_game()))
+
+// Conditional: Selected file, not playing level yet (picking level)
+rich_presence_conditional_display(is_on_level_select(), "{0}{1}{2} is selecting a level to play - 💰{3}/1,120",
+    rich_presence_macro("ASCIIChar", save_file_initial_1()),
+    rich_presence_macro("ASCIIChar", save_file_initial_2()),
+    rich_presence_macro("ASCIIChar", save_file_initial_3()),
+    rich_presence_value("Total Coins Collected", total_coins_collected_game()))
+
+// Conditional: Fallback, haven't loaded save file yet
+rich_presence_display("Player is on the title screen")
 
 
 /* Complete level achievements */
