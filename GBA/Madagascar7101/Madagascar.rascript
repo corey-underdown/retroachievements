@@ -135,10 +135,10 @@ function total_coins_collected_game() => total_coins_collected_daily_grind()
 + total_coins_collected_foosa_lair()
 
 adventure_levels = { 
-    0: "Alex's Tutorial", 
-    1: "Marty's Tutorial",
-    2: "Melman's Tutorial",
-    3: "Gloria's Tutorial",
+    0: "Alex's Double Jump", 
+    1: "Marty's Run",
+    2: "Melman's Hideout Dig",
+    3: "Gloria's Swim",
     4: "Daily Grind",
     5: "Marty's Crawl",
     6: "Operation: Zoo Askew",
@@ -268,7 +268,7 @@ achievement_collect_all_level_coins("Opeartion: Zoo Askew", "Opeartion: Zoo Aske
 achievement_collect_all_level_coins("Subway Surfers", "Subway Surfers", coin_total_subway_surfers(), 75, 0, 584432)
 achievement_collect_all_level_coins("Opeartion: Ship Sneak", "Opeartion: Ship Sneak", coin_total_operation_ship_sneak(), 20, 0, 584433)
 achievement_collect_all_level_coins("On the Beach", "On the Beach", coin_total_on_the_beach(), 120, 0, 584436)
-achievement_collect_all_level_coins("Jungle Dub", "Jungle Dub", coin_total_jungle_dub(), 120, 0, 584437)
+achievement_collect_all_level_coins("Jungle Dub", "Jungle Dub", coin_total_jungle_dub(), 130, 0, 584437)
 achievement_collect_all_level_coins("Lemur Liberation", "Lemur Liberation", coin_total_lemur_liberation(), 75, 0, 584438)
 achievement_collect_all_level_coins("Wild World", "Wild World", coin_total_wild_world(), 120, 0, 584439)
 achievement_collect_all_level_coins("Alex's Escape", "Alex's Escape", coin_total_alexs_escape(), 120, 0, 584440)
