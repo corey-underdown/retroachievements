@@ -210,42 +210,44 @@ rich_presence_display("Player is on the title screen")
 
 
 /* Complete level achievements */
-function achievement_complete_level(level_name, desc, level_id, points, achievement_id)
+function achievement_complete_level(level_name, desc, level_id, points, achievement_id, badge_id)
 {
     achievement(
     title = "Complete " + level_name, points = points, type="progression",
     description = "Complete " + level_name,
     id = achievement_id,
+    badge = badge_id,
     trigger = current_game_state() != prev(current_game_state()) && current_game_state() == game_state_level_win && game_mode_selected() == game_mode_adventure &&
               level_selected() == level_id
     )
 }
 
-function achievement_complete_level_win(level_name, desc, level_id, points, achievement_id)
+function achievement_complete_level_win(level_name, desc, level_id, points, achievement_id, badge_id)
 {
     achievement(
     title = "Complete " + level_name, points = points, type="win_condition",
     description = "Complete " + level_name,
     id = achievement_id,
+    badge = badge_id,
     trigger = current_game_state() != prev(current_game_state()) && current_game_state() == game_state_level_win && game_mode_selected() == game_mode_adventure &&
               level_selected() == level_id
     )
 }
 
-achievement_complete_level("Daily Grind", "Daily Grind", 4, 0, 584131)
-achievement_complete_level("Opeartion: Zoo Askew", "Opeartion: Zoo Askew", 6, 0, 584181)
-achievement_complete_level("Subway Surfers", "Subway Surfers", 7, 0, 584182)
-achievement_complete_level("Opeartion: Ship Sneak", "Opeartion: Ship Sneak", 8, 0, 584183)
-achievement_complete_level("On the Beach", "On the Beach", 9, 0, 584184)
-achievement_complete_level("Jungle Dub", "Jungle Dub", 10, 0, 584185)
-achievement_complete_level("Lemur Rave", "Complete Lemur Rave", 11, 0, 584186)
-achievement_complete_level("Lemur Liberation", "Lemur Liberation", 13, 0, 584187)
-achievement_complete_level("Wild World", "Wild World", 14, 0, 584188)
-achievement_complete_level("Alex's Escape", "Alex's Escape", 16, 0, 584189)
-achievement_complete_level("Island Getaway", "Island Getaway", 18, 0, 584190)
-achievement_complete_level("Marty to the Rescue", "Marty to the Rescue", 19, 0, 584191)
-achievement_complete_level("Foosa Lair", "Foosa Lair", 21, 0, 584192)
-achievement_complete_level_win("Foosa Arena", "Foosa Arena", 22, 0, 584180)
+achievement_complete_level("Daily Grind", "Daily Grind", 4, 0, 584131, 681221)
+achievement_complete_level("Opeartion: Zoo Askew", "Opeartion: Zoo Askew", 6, 0, 584181, 681263)
+achievement_complete_level("Subway Surfers", "Subway Surfers", 7, 0, 584182, 681264)
+achievement_complete_level("Opeartion: Ship Sneak", "Opeartion: Ship Sneak", 8, 0, 584183, 681265)
+achievement_complete_level("On the Beach", "On the Beach", 9, 0, 584184, 681266)
+achievement_complete_level("Jungle Dub", "Jungle Dub", 10, 0, 584185, 681267)
+achievement_complete_level("Lemur Rave", "Complete Lemur Rave", 11, 0, 584186, 681268)
+achievement_complete_level("Lemur Liberation", "Lemur Liberation", 13, 0, 584187, 681269)
+achievement_complete_level("Wild World", "Wild World", 14, 0, 584188, 681269)
+achievement_complete_level("Alex's Escape", "Alex's Escape", 16, 0, 584189, 681271)
+achievement_complete_level("Island Getaway", "Island Getaway", 18, 0, 584190, 681272)
+achievement_complete_level("Marty to the Rescue", "Marty to the Rescue", 19, 0, 584191, 681273)
+achievement_complete_level("Foosa Lair", "Foosa Lair", 21, 0, 584192, 681274)
+achievement_complete_level_win("Foosa Arena", "Foosa Arena", 22, 0, 584180, 681275)
 
 
 
@@ -255,7 +257,7 @@ achievement_complete_level_win("Foosa Arena", "Foosa Arena", 22, 0, 584180)
 function achievement_collect_all_level_coins(level_name, desc, level_coin_count_byte, total_coins, points, achievement_id)
 {
     achievement(
-    title = "Collect all " + total_coins + " coins in '" + level_name + "'", points = points,
+    title = "Collect All " + total_coins + " Coins in '" + level_name + "'", points = points,
     description = "Collect all coins in " + level_name,
     id = achievement_id,
     trigger = game_mode_selected() == game_mode_adventure && prev(current_game_state()) == game_state_level_win && level_coin_count_byte > prev(level_coin_count_byte) &&
@@ -285,7 +287,7 @@ achievement_collect_all_level_coins("Foosa Lair", "Foosa Lair", coin_total_foosa
 function achievement_complete_stealth_level_without_alerting_guard(level_name, level_id, points, achievement_id)
 {
     achievement(
-    title = "Complete " + level_name + " without alerting guards", points = points,
+    title = "Complete " + level_name + " Without Alerting Guards", points = points,
     description = "Complete " + level_name + " without alerting guards [Exit to level select to try again]",
     id = achievement_id,
     trigger = game_mode_selected() == game_mode_adventure && level_selected() == level_id && once(prev(current_game_state()) == game_state_cutscene) &&
@@ -310,7 +312,7 @@ function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, b
 }
 
 achievement_beat_character_time_in_bonus_stage(
-    "Beat Marty's time in bonus stage Marty's Crawl Bonus",
+    "Beat Marty's time in Bonus Stage Marty's Crawl Bonus",
     "Beat Marty's time in bonus stage Marty's Crawl [beat 1m:00s]",
     0,
     best_time_seconds_bonus_martys_crawl(),
@@ -320,7 +322,7 @@ achievement_beat_character_time_in_bonus_stage(
 )
 
 achievement_beat_character_time_in_bonus_stage(
-    "Beat Marty's time in bonus stage Operation: Zoo Askew",
+    "Beat Marty's Time in Bonus Stage Operation: Zoo Askew",
     "Beat Marty's time in bonus stage Operation: Zoo Askew [beat 2m:00s]",
     1,
     best_time_seconds_bonus_operation_zoo_askew(),
@@ -330,7 +332,7 @@ achievement_beat_character_time_in_bonus_stage(
 )
 
 achievement_beat_character_time_in_bonus_stage(
-    "Beat Skipper's time in bonus stage Operation: Ship Sneak",
+    "Beat Skipper's Time in Bonus Stage Operation: Ship Sneak",
     "Beat Skipper's time in bonus stage Operation: Ship Sneak [beat 4m:15s]",
     2,
     best_time_seconds_bonus_opeartion_ship_sneak(),
@@ -341,7 +343,7 @@ achievement_beat_character_time_in_bonus_stage(
 
 // Melman's Lemur Rave scores the opposite direction - want to be higher than his score, vs the others where you want to lower than their time
 achievement(
-    title = "Beat Melman's score in bonus stage Lemur Rave", 
+    title = "Beat Melman's Score in Bonus Stage Lemur Rave", 
     points = 0,
     description = "Beat Melman's score in bonus stage Lemur Rave [Beat 150 points]",
     id = 584718,
@@ -350,7 +352,7 @@ achievement(
     )
 
 achievement_beat_character_time_in_bonus_stage(
-    "Beat Melman's time in bonus stage Melman's Sneeze Jump",
+    "Beat Melman's Time in Bonus Stage Melman's Sneeze Jump",
     "Beat Melman's time in bonus stage Melman's Sneeze Jump [beat 1m:00s]",
     4,
     best_time_seconds_bonus_melmans_sneeze(),
@@ -370,7 +372,7 @@ achievement_beat_character_time_in_bonus_stage(
 )
 
 achievement_beat_character_time_in_bonus_stage(
-    "Beat Gloria's time in bonus stage Gloria's Dive",
+    "Beat Gloria's Time in Bonus Stage Gloria's Dive",
     "Beat Gloria's time in bonus stage Gloria's Dive [beat 1m:15s]",
     6,
     best_time_seconds_bonus_glorias_dive(),
@@ -381,7 +383,7 @@ achievement_beat_character_time_in_bonus_stage(
 
 
 achievement_beat_character_time_in_bonus_stage(
-    "Beat Alex's time in bonus stage Alex's Claw Climb",
+    "Beat Alex's Time in Bonus Stage Alex's Claw Climb",
     "Beat Alex's time in bonus stage Alex's Claw Climb [beat 1m:30s]",
     7,
     best_time_seconds_bonus_alexs_claw_climb(),
@@ -392,15 +394,15 @@ achievement_beat_character_time_in_bonus_stage(
 
 
 achievement(
-    title = "Beat Lemur Rave without losing any health", points = 0,
+    title = "Beat Lemur Rave without Losing Any Health", points = 0,
     description = "Beat Lemur Rave without losing any health",
     id = 584163,
-    trigger = game_mode_selected() == game_mode_adventure && level_selected() == 11 && once(current_game_state() == game_state_in_level_gameplay) && current_health() >= 5 &&
-              trigger_when(current_game_state() == game_state_level_win) && never((current_game_state() != game_state_level_win && current_game_state() != game_state_in_level_gameplay))
+    trigger = current_game_state() != prev(current_game_state()) && current_game_state() == game_state_level_win && game_mode_selected() == game_mode_adventure 
+        && level_selected() == 11 && current_health() >= 5
 )
 
 achievement(
-    title = "Beat Foosa Lair without losing any Lemurs", points = 0,
+    title = "Beat Foosa Lair without Losing Any Lemurs", points = 0,
     description = "Beat Foosa Lair without losing any Lemurs",
     id = 584894,
     trigger = game_mode_selected() == game_mode_adventure && level_selected() == 16 && once(current_game_state() == game_state_in_level_gameplay) && once(counter_saved_lemurs_foosa_lair() == 0)
