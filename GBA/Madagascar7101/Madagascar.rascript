@@ -296,9 +296,13 @@ function achievement_complete_stealth_level_without_alerting_guard(achievement_t
     title = achievement_title, points = points,
     description = desc,
     id = achievement_id,
-    trigger = game_mode_selected() == game_mode_adventure && level_selected() == level_id && once(prev(current_game_state()) == game_state_cutscene) &&
-              once(current_game_state() == game_state_in_level_gameplay) && trigger_when(current_game_state() == game_state_level_win) && never(current_game_state() == 12) &&
-              never(guard_alert_level() < 5)
+    trigger =   game_mode_selected() == game_mode_adventure && 
+                once(prev(current_game_state()) == game_state_cutscene) &&
+                once(current_game_state() == game_state_in_level_gameplay) && 
+                never(current_game_state() == 12) &&
+                never(guard_alert_level() < 5) &&
+                never(level_selected() != level_id) &&
+                trigger_when(current_game_state() == game_state_level_win)
     )
 }
 
