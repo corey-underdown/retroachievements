@@ -219,8 +219,10 @@ function achievement_complete_level(achievement_title, desc, level_id, points, a
     description = desc,
     id = achievement_id,
     badge = badge_id,
-    trigger = current_game_state() != prev(current_game_state()) && current_game_state() == game_state_level_win && game_mode_selected() == game_mode_adventure &&
-              level_selected() == level_id
+    trigger =   prev(current_game_state()) == game_state_in_level_gameplay &&
+                current_game_state() == game_state_level_win && 
+                game_mode_selected() == game_mode_adventure &&
+                level_selected() == level_id
     )
 }
 
