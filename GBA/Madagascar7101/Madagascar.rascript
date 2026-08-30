@@ -190,7 +190,7 @@ rich_presence_conditional_display(is_playing_adventure_level(), "{0}{1}{2} is pl
     rich_presence_macro("ASCIIChar", save_file_initial_2()),
     rich_presence_macro("ASCIIChar", save_file_initial_3()),
     rich_presence_lookup("AdventureLevel", level_selected(), adventure_levels),
-    rich_presence_value("Total Coins Collected", total_coins_collected_game()))
+    rich_presence_value("TotalCoins", total_coins_collected_game()))
     
 // Conditional: Playing bonus level
 rich_presence_conditional_display(is_playing_bonus_level(), "{0}{1}{2} is playing bonus level '{3}' - 💰{4}/1,120",
@@ -198,17 +198,17 @@ rich_presence_conditional_display(is_playing_bonus_level(), "{0}{1}{2} is playin
     rich_presence_macro("ASCIIChar", save_file_initial_2()),
     rich_presence_macro("ASCIIChar", save_file_initial_3()),
     rich_presence_lookup("BonusLevel", level_selected(), bonus_levels),
-    rich_presence_value("Total Coins Collected", total_coins_collected_game()))
+    rich_presence_value("TotalCoins", total_coins_collected_game()))
 
 // Conditional: Selected file, not playing level yet (picking level)
 rich_presence_conditional_display(is_on_level_select(), "{0}{1}{2} is selecting a level to play - 💰{3}/1,120",
     rich_presence_macro("ASCIIChar", save_file_initial_1()),
     rich_presence_macro("ASCIIChar", save_file_initial_2()),
     rich_presence_macro("ASCIIChar", save_file_initial_3()),
-    rich_presence_value("Total Coins Collected", total_coins_collected_game()))
+    rich_presence_value("TotalCoins", total_coins_collected_game()))
 
 // Conditional: Fallback, haven't loaded save file yet
-rich_presence_display("Player is on the title screen")
+rich_presence_display("Playing Madagascar")
 
 
 /* Complete level achievements */
