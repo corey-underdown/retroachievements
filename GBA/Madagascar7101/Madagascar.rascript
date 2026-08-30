@@ -242,23 +242,20 @@ function achievement_complete_level_win(achievement_title, desc, level_id, point
     )
 }
 
-achievement_complete_level("Same Ol’ Same Ol’", "Begin preparations to celebrate someone's birthday by completing a the level \"Daily Grind\"", 4, 0, 584131, "681221")
-achievement_complete_level("Born to Be Wild", "Set a zebra's dreams in motion by completing the level \"Operation: Zoo Askew\"", 6, 0, 584181, "681263")
-achievement_complete_level("Surf's Up!", "Brave the germs of New York's vast underbelly to pursue Marty by completing the level \"Subway Surfers\"", 7, 0, 584182, "681264")
-achievement_complete_level("Smile and Stealth, Boys...", "Adopt the mindset of a special agent and sneakily move to seize control of the ship by completing the level \"Operation: Ship Sneak\"", 8, 0, 584183, "681265")
-achievement_complete_level("Oh, Sugar Honey Iced Tea!", "Quit fooling around and guide the investigation into the new surroundings by completing the level \"On the Beach\"", 9, 0, 584184, "681266")
-achievement_complete_level("Beat of the Jungle", "Guide the adventure into the depths of the jungle in order to uncover the surprising source of the music by completing the level \"Jungle Dub\"", 10, 0, 584185, "681267")
-achievement_complete_level("I Like to Move It, Move It!", "Show off how a giraffe pulls off surprisingly stylish moves by completing the level \"Lemur Rave\"", 11, 0, 584186, "681268")
-achievement_complete_level("Achoo! We’ll Save You!", "Sneeze your way around and over obstacles and rescue the friendly lemurs by completing the level \"Lemur Liberation\"", 13, 0, 584187, "681269")
-achievement_complete_level("Far from Home", "No people, no steaks, no problem! Press on with the new lifestyle and try to find a lion friendly meal by completing the level \"Wild World\"", 14, 0, 584188, "681270")
-achievement_complete_level("Safety at Steak", "Preserve the safety of the other animals by putting some distance between them and a certain hungry lion by completing the level \"Alex's Escape\"", 16, 0, 584189, "681271")
-achievement_complete_level("Pandaemonium in Paradise", "Leave the itchy plants behind and conquer the growing anxiety over the potential desire to bite one another by completing the level \"Island Getaway\"", 18, 0, 584190, "681272")
-achievement_complete_level("Some Heroes Wear Capes, Others Have Stripes", "Venture back into unfriendly territory to find a zebra's best friend by completing the level \"Marty to the Rescue\"", 19, 0, 584191, "681273")
-achievement_complete_level("Belly of the Beasts ", "Navigate hostile territory to reunite two of New York's finest by completing the level \"Foosa Lair\" ", 21, 0, 584192, "681274")
-achievement_complete_level_win("Foosa Fighter", "Stave off the foosa threat and ensure all the lemurs are taken to safety by completing the level \"Foosa Arena\"", 22, 0, 584180, "681275")
-
-
-
+achievement_complete_level("Same Ol’ Same Ol’", "Begin preparations to celebrate someone's birthday by completing a the level \"Daily Grind\"", 4, 2, 584131, "681221")
+achievement_complete_level("Born to Be Wild", "Set a zebra's dreams in motion by completing the level \"Operation: Zoo Askew\"", 6, 3, 584181, "681263")
+achievement_complete_level("Surf's Up!", "Brave the germs of New York's vast underbelly to pursue Marty by completing the level \"Subway Surfers\"", 7, 3, 584182, "681264")
+achievement_complete_level("Smile and Stealth, Boys...", "Adopt the mindset of a special agent and sneakily move to seize control of the ship by completing the level \"Operation: Ship Sneak\"", 8, 3, 584183, "681265")
+achievement_complete_level("Oh, Sugar Honey Iced Tea!", "Quit fooling around and guide the investigation into the new surroundings by completing the level \"On the Beach\"", 9, 3, 584184, "681266")
+achievement_complete_level("Beat of the Jungle", "Guide the adventure into the depths of the jungle in order to uncover the surprising source of the music by completing the level \"Jungle Dub\"", 10, 3, 584185, "681267")
+achievement_complete_level("I Like to Move It, Move It!", "Show off how a giraffe pulls off surprisingly stylish moves by completing the level \"Lemur Rave\"", 11, 4, 584186, "681268")
+achievement_complete_level("Achoo! We’ll Save You!", "Sneeze your way around and over obstacles and rescue the friendly lemurs by completing the level \"Lemur Liberation\"", 13, 4, 584187, "681269")
+achievement_complete_level("Far from Home", "No people, no steaks, no problem! Press on with the new lifestyle and try to find a lion friendly meal by completing the level \"Wild World\"", 14, 4, 584188, "681270")
+achievement_complete_level("Safety at Steak", "Preserve the safety of the other animals by putting some distance between them and a certain hungry lion by completing the level \"Alex's Escape\"", 16, 4, 584189, "681271")
+achievement_complete_level("Pandaemonium in Paradise", "Leave the itchy plants behind and conquer the growing anxiety over the potential desire to bite one another by completing the level \"Island Getaway\"", 18, 4, 584190, "681272")
+achievement_complete_level("Some Heroes Wear Capes, Others Have Stripes", "Venture back into unfriendly territory to find a zebra's best friend by completing the level \"Marty to the Rescue\"", 19, 5, 584191, "681273")
+achievement_complete_level("Belly of the Beasts", "Navigate hostile territory to reunite two of New York's finest by completing the level \"Foosa Lair\" ", 21, 5, 584192, "681274")
+achievement_complete_level_win("Foosa Fighter", "Stave off the foosa threat and ensure all the lemurs are taken to safety by completing the level \"Foosa Arena\"", 22, 10, 584180, "681275")
 
 
 /* Collect Coins Achievements */
@@ -275,31 +272,28 @@ function achievement_collect_all_level_coins(achievement_title, desc, level_coin
     )
 }
 
-achievement_collect_all_level_coins("Another Day, Another Dollar", "Collect every coin in the level \"Daily Grind\"", coin_total_daily_grind(), 85, 0, 584133, "681276")
-achievement_collect_all_level_coins("Loose Change", "Collect every coin in the level \"Operation: Zoo Askew\"", coin_total_operation_zoo_askew(), 20, 0, 584430, "681277")
-achievement_collect_all_level_coins("Part Time Busker", "Collect every coin in the level \"Subway Surfers\"", coin_total_subway_surfers(), 75, 0, 584432, "681278")
-achievement_collect_all_level_coins("Penguin Pickpocket", "Collect every coin in the level \"Operation: Ship Sneak\"", coin_total_operation_ship_sneak(), 20, 0, 584433, "681279")
-achievement_collect_all_level_coins("Coin Detector", "Collect every coin in the level \"On the Beach\"", coin_total_on_the_beach(), 120, 0, 584436, "681280")
-achievement_collect_all_level_coins("Money Trees", "Collect every coin in the level \"Jungle Dub\"", coin_total_jungle_dub(), 130, 0, 584437, "681281")
-achievement_collect_all_level_coins("We Like to Save It, Save It!", "Collect every coin in the level \"Lemur Liberation\"", coin_total_lemur_liberation(), 75, 0, 584438, "681282")
-achievement_collect_all_level_coins("Wild World of Wealth", "Collect every coin in the level \"Wild World\"", coin_total_wild_world(), 120, 0, 584439, "681283")
-achievement_collect_all_level_coins("Steak Savings", "Collect every coin in the level \"Alex's Escape\"", coin_total_alexs_escape(), 120, 0, 584440, "681284")
-achievement_collect_all_level_coins("Ferry Fare", "Collect every coin in the level \"Island Getaway\"", coin_total_island_getaway(), 120, 0, 584164, "681285")
-achievement_collect_all_level_coins("Super Marty-o", "Collect every coin in the level \"Marty to the Rescue\"", coin_total_marty_to_the_rescue(), 125, 0, 584441, "681286")
-achievement_collect_all_level_coins("This Is What the Foosa Is About", "Collect every coin in the level \"Foosa Lair\"", coin_total_foosa_lair(), 110, 0, 584179, "681287")
-
-
-
-
+achievement_collect_all_level_coins("Another Day, Another Dollar", "Collect every coin in the level \"Daily Grind\"", coin_total_daily_grind(), 85, 10, 584133, "681276")
+achievement_collect_all_level_coins("Loose Change", "Collect every coin in the level \"Operation: Zoo Askew\"", coin_total_operation_zoo_askew(), 20, 10, 584430, "681277")
+achievement_collect_all_level_coins("Part Time Busker", "Collect every coin in the level \"Subway Surfers\"", coin_total_subway_surfers(), 75, 10, 584432, "681278")
+achievement_collect_all_level_coins("Penguin Pickpocket", "Collect every coin in the level \"Operation: Ship Sneak\"", coin_total_operation_ship_sneak(), 20, 10, 584433, "681279")
+achievement_collect_all_level_coins("Coin Detector", "Collect every coin in the level \"On the Beach\"", coin_total_on_the_beach(), 120, 10, 584436, "681280")
+achievement_collect_all_level_coins("Money Trees", "Collect every coin in the level \"Jungle Dub\"", coin_total_jungle_dub(), 130, 10, 584437, "681281")
+achievement_collect_all_level_coins("We Like to Save It, Save It!", "Collect every coin in the level \"Lemur Liberation\"", coin_total_lemur_liberation(), 75, 10, 584438, "681282")
+achievement_collect_all_level_coins("Wild World of Wealth", "Collect every coin in the level \"Wild World\"", coin_total_wild_world(), 120, 10, 584439, "681283")
+achievement_collect_all_level_coins("Steak Savings", "Collect every coin in the level \"Alex's Escape\"", coin_total_alexs_escape(), 120, 10, 584440, "681284")
+achievement_collect_all_level_coins("Ferry Fare", "Collect every coin in the level \"Island Getaway\"", coin_total_island_getaway(), 120, 10, 584164, "681285")
+achievement_collect_all_level_coins("Super Marty-o", "Collect every coin in the level \"Marty to the Rescue\"", coin_total_marty_to_the_rescue(), 125, 10, 584441, "681286")
+achievement_collect_all_level_coins("This Is What the Foosa Is About", "Collect every coin in the level \"Foosa Lair\"", coin_total_foosa_lair(), 110, 10, 584179, "681287")
 
 
 /* Stealth missions, don't alert guards */
-function achievement_complete_stealth_level_without_alerting_guard(achievement_title, desc, level_id, points, achievement_id)
+function achievement_complete_stealth_level_without_alerting_guard(achievement_title, desc, level_id, points, achievement_id, badge_id)
 {
     achievement(
     title = achievement_title, points = points,
     description = desc,
     id = achievement_id,
+    badge = badge_id,
     trigger =   game_mode_selected() == game_mode_adventure && 
                 once(prev(current_game_state()) == game_state_cutscene) &&
                 once(current_game_state() == game_state_in_level_gameplay) && 
@@ -310,16 +304,17 @@ function achievement_complete_stealth_level_without_alerting_guard(achievement_t
     )
 }
 
-achievement_complete_stealth_level_without_alerting_guard("Slip and Step Towards Freedom", "Complete \"Operation: Zoo Askew\" without altering any guards [Exit to level select to try again]", 6, 0, 584150)
-achievement_complete_stealth_level_without_alerting_guard("Slip Through Like Skipper", "Complete \"Operation: Ship Sneak\" without alerting any guards [Exit to level select to try again]", 8, 0, 584577)
+achievement_complete_stealth_level_without_alerting_guard("Slip and Step Towards Freedom", "Complete \"Operation: Zoo Askew\" without altering any guards. Exit to level select to try again.", 6, 25, 584150, "716057")
+achievement_complete_stealth_level_without_alerting_guard("Slip Through Like Skipper", "Complete \"Operation: Ship Sneak\" without alerting any guards. Exit to level select to try again.", 8, 25, 584577, "716058")
 
 
-function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, best_time_dword, seconds_to_beat, points, achievement_id) {
+function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, best_time_dword, seconds_to_beat, points, achievement_id, badge_id) {
     achievement(
     title = title, 
     points = points,
     description = desc,
     id = achievement_id,
+    badge = badge_id,
     trigger = game_mode_selected() == game_mode_bonus && level_selected() == level_id && current_game_state() == game_state_level_win 
         && best_time_dword < prev(best_time_dword) && best_time_dword < seconds_to_beat
     )
@@ -327,99 +322,110 @@ function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, b
 
 achievement_beat_character_time_in_bonus_stage(
     "Champion Crawler",
-    "Beat Marty's time in the bonus level \"Marty's Crawl\" [beat 1m:00s]",
+    "Beat Marty's time in the bonus level \"Marty's Crawl\"",
     0,
     best_time_seconds_bonus_martys_crawl(),
     60,
-    0,
-    584138
+    10,
+    584138,
+    "716049"
 )
 
 achievement_beat_character_time_in_bonus_stage(
     "Zippy Zebra",
-    "Beat Marty's time in the level \"Operation: Zoo Askew\" [beat 2m:00s]",
+    "Beat Marty's time in the bonus level \"Operation: Zoo Askew\"",
     1,
     best_time_seconds_bonus_operation_zoo_askew(),
     120,
-    0,
-    584716
+    10,
+    584716,
+    "716050"
 )
 
 achievement_beat_character_time_in_bonus_stage(
     "Small Sprightly Sailor",
-    "Beat Skipper's time in the level \"Operation: Ship Sneak\" [beat 4m:15s]",
+    "Beat Skipper's time in the bonus level \"Operation: Ship Sneak\"",
     2,
     best_time_seconds_bonus_opeartion_ship_sneak(),
     255,
-    0,
-    584717
+    10,
+    584717,
+    "716051"
 )
 
 // Melman's Lemur Rave scores the opposite direction - want to be higher than his score, vs the others where you want to lower than their time
 achievement(
     title = "Moves Like Melman", 
-    points = 0,
-    description = "Beat Melman's score in the level \"Lemur Rave\" [beat 150 points]",
+    points = 10,
+    description = "Beat Melman's record in the bonus level \"Lemur Rave\"",
     id = 584829,
+    badge = "716052",
     trigger = game_mode_selected() == game_mode_bonus && level_selected() == 3 && current_game_state() == game_state_level_win 
         && best_score_bonus_lemur_rave() > prev(best_score_bonus_lemur_rave()) && best_score_bonus_lemur_rave() > 150
     )
 
 achievement_beat_character_time_in_bonus_stage(
     "Superpowered Sneezes",
-    "Beat Melman's time in the bonus level \"Melman's Sneeze Jump\" [beat 1m:00s]",
+    "Beat Melman's time in the bonus level \"Melman's Sneeze Jump\"",
     4,
     best_time_seconds_bonus_melmans_sneeze(),
     60,
-    0,
-    584718
+    10,
+    584718,
+    "716053"
 )
 
 achievement_beat_character_time_in_bonus_stage(
     "Sharper than Steel",
-    "Beat Alex's time in the bonus level \"Alex's Claws\" [beat 1m:15s]",
+    "Beat Alex's time in the bonus level \"Alex's Claws\"",
     5,
     best_time_seconds_bonus_alexs_claws(),
     75,
-    0,
-    584719
+    10,
+    584719,
+    "716054"
 )
 
 achievement_beat_character_time_in_bonus_stage(
     "Hippo Certified",
-    "Beat Gloria's time in the bonus level \"Gloria's Dive\" [beat 1m:15s]",
+    "Beat Gloria's time in the bonus level \"Gloria's Dive\"",
     6,
     best_time_seconds_bonus_glorias_dive(),
     75,
-    0,
-    584720
+    10,
+    584720,
+    "716055"
 )
 
 
 achievement_beat_character_time_in_bonus_stage(
     "Cliff Climber",
-    "Beat Alex's time in the bonus level \"Alex's Claw Climb\" [beat 1m:30s]",
+    "Beat Alex's time in the bonus level \"Alex's Claw Climb\"",
     7,
     best_time_seconds_bonus_alexs_claw_climb(),
     90,
-    0,
-    584721
+    10,
+    584721,
+    "716056"
 )
 
 
 achievement(
-    title = "Original King Julien", points = 0,
+    title = "Original King Julien", 
+    points = 10,
     description = "Put on a show fit for royalty by completing the level \"Lemur Rave\" without losing any health",
     id = 584163,
+    badge = "716059",
     trigger = game_mode_selected() == game_mode_adventure && level_selected() == 11 && once(current_game_state() == game_state_in_level_gameplay)
         && trigger_when(prev(current_game_state()) == game_state_level_win) && never(current_game_state() == game_state_level_select) && never(current_health() < 5)
-    
 )
 
 achievement(
-    title = "King of the Jungle", points = 0,
-    description = "Assert dominance over the Foosa by completing the level \"Foosa Arena\" without losing any lemurs.",
+    title = "King of the Jungle", 
+    points = 10,
+    description = "Assert dominance over the Foosa by completing the level \"Foosa Arena\" without losing any lemurs",
     id = 584894,
+    badge = "716060",
     trigger = game_mode_selected() == game_mode_adventure && level_selected() == 22 && once(current_game_state() == game_state_in_level_gameplay) && once(counter_saved_lemurs_foosa_lair() == 0)
         && trigger_when(prev(current_game_state()) == game_state_level_win) && never(current_game_state() == game_state_level_select) && never(counter_saved_lemurs_foosa_lair() < prev(counter_saved_lemurs_foosa_lair()))
 )
