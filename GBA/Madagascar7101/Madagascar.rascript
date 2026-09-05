@@ -294,12 +294,14 @@ function achievement_complete_stealth_level_without_alerting_guard(achievement_t
     description = desc,
     id = achievement_id,
     badge = badge_id,
-    trigger =   game_mode_selected() == game_mode_adventure && 
-                once(prev(current_game_state()) == game_state_cutscene) &&
-                once(current_game_state() == game_state_in_level_gameplay) && 
+    trigger =   once(
+                    game_mode_selected() == game_mode_adventure && 
+                    level_selected() == level_id && 
+                    prev(current_game_state() == game_state_cutscene) &&
+                    current_game_state() == game_state_in_level_gameplay
+                ) && 
                 never(current_game_state() == 12) &&
                 never(guard_alert_level() < 5) &&
-                never(level_selected() != level_id) &&
                 trigger_when(current_game_state() == game_state_level_win)
     )
 }
@@ -416,8 +418,15 @@ achievement(
     description = "Put on a show fit for royalty by completing the level \"Lemur Rave\" without losing any health",
     id = 584163,
     badge = "716059",
-    trigger = game_mode_selected() == game_mode_adventure && level_selected() == 11 && once(current_game_state() == game_state_in_level_gameplay)
-        && trigger_when(prev(current_game_state()) == game_state_level_win) && never(current_game_state() == game_state_level_select) && never(current_health() < 5)
+    trigger =   once(
+                  game_mode_selected() == game_mode_adventure &&
+                  level_selected() == 11 &&
+                  prev(current_game_state() != game_state_in_level_gameplay) &&
+                  current_game_state() == game_state_in_level_gameplay
+                ) &&
+                never(current_game_state() == game_state_level_select) && 
+                never(current_health() < 5) &&
+                trigger_when(current_game_state() == game_state_level_win)
 )
 
 achievement(
@@ -426,8 +435,16 @@ achievement(
     description = "Assert dominance over the Foosa by completing the level \"Foosa Arena\" without losing any lemurs",
     id = 584894,
     badge = "716060",
-    trigger = game_mode_selected() == game_mode_adventure && level_selected() == 22 && once(current_game_state() == game_state_in_level_gameplay) && once(counter_saved_lemurs_foosa_lair() == 0)
-        && trigger_when(prev(current_game_state()) == game_state_level_win) && never(current_game_state() == game_state_level_select) && never(counter_saved_lemurs_foosa_lair() < prev(counter_saved_lemurs_foosa_lair()))
+    trigger = 
+        once(
+            game_mode_selected() == game_mode_adventure && 
+            level_selected() == 22 && 
+            prev(current_game_state() != game_state_in_level_gameplay) &&
+            current_game_state() == game_state_in_level_gameplay
+        ) && 
+        never(current_game_state() == game_state_level_select) &&
+        never(counter_saved_lemurs_foosa_lair() < prev(counter_saved_lemurs_foosa_lair())) &&
+        trigger_when(current_game_state() == game_state_level_win) 
 )
 
 
