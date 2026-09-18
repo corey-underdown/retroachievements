@@ -259,7 +259,7 @@ achievement_complete_level_win("Foosa Fighter", "Stave off the foosa threat and 
 
 
 /* Collect Coins Achievements */
-function achievement_collect_all_level_coins(achievement_title, desc, level_coin_count_byte, total_coins, points, achievement_id, badge_id)
+function achievement_collect_all_level_coins(achievement_title, desc, level_id, level_coin_count_byte, total_coins, points, achievement_id, badge_id)
 {
     achievement(
     title = achievement_title, 
@@ -267,23 +267,26 @@ function achievement_collect_all_level_coins(achievement_title, desc, level_coin
     description = desc,
     id = achievement_id,
     badge = badge_id,
-    trigger = game_mode_selected() == game_mode_adventure && prev(current_game_state()) == game_state_level_win && level_coin_count_byte > prev(level_coin_count_byte) &&
-              level_coin_count_byte >= total_coins
+    trigger =  
+                game_mode_selected() == game_mode_adventure && 
+                level_selected() == level_id && 
+                prev(level_coin_count_byte < total_coins) && 
+                level_coin_count_byte >= total_coins
     )
 }
 
-achievement_collect_all_level_coins("Another Day, Another Dollar", "Collect every coin in the level \"Daily Grind\"", coin_total_daily_grind(), 85, 10, 584133, "681276")
-achievement_collect_all_level_coins("Loose Change", "Collect every coin in the level \"Operation: Zoo Askew\"", coin_total_operation_zoo_askew(), 20, 10, 584430, "681277")
-achievement_collect_all_level_coins("Part Time Busker", "Collect every coin in the level \"Subway Surfers\"", coin_total_subway_surfers(), 75, 10, 584432, "681278")
-achievement_collect_all_level_coins("Penguin Pickpocket", "Collect every coin in the level \"Operation: Ship Sneak\"", coin_total_operation_ship_sneak(), 20, 10, 584433, "681279")
-achievement_collect_all_level_coins("Coin Detector", "Collect every coin in the level \"On the Beach\"", coin_total_on_the_beach(), 120, 10, 584436, "681280")
-achievement_collect_all_level_coins("Money Trees", "Collect every coin in the level \"Jungle Dub\"", coin_total_jungle_dub(), 130, 10, 584437, "681281")
-achievement_collect_all_level_coins("We Like to Save It, Save It!", "Collect every coin in the level \"Lemur Liberation\"", coin_total_lemur_liberation(), 75, 10, 584438, "681282")
-achievement_collect_all_level_coins("Wild World of Wealth", "Collect every coin in the level \"Wild World\"", coin_total_wild_world(), 120, 10, 584439, "681283")
-achievement_collect_all_level_coins("Steak Savings", "Collect every coin in the level \"Alex's Escape\"", coin_total_alexs_escape(), 120, 10, 584440, "681284")
-achievement_collect_all_level_coins("Ferry Fare", "Collect every coin in the level \"Island Getaway\"", coin_total_island_getaway(), 120, 10, 584164, "681285")
-achievement_collect_all_level_coins("Super Marty-o", "Collect every coin in the level \"Marty to the Rescue\"", coin_total_marty_to_the_rescue(), 125, 10, 584441, "681286")
-achievement_collect_all_level_coins("This Is What the Foosa Is About", "Collect every coin in the level \"Foosa Lair\"", coin_total_foosa_lair(), 110, 10, 584179, "681287")
+achievement_collect_all_level_coins("Another Day, Another Dollar", "Collect every coin in the level \"Daily Grind\"", 4, coin_total_daily_grind(), 85, 10, 584133, "681276")
+achievement_collect_all_level_coins("Loose Change", "Collect every coin in the level \"Operation: Zoo Askew\"", 6, coin_total_operation_zoo_askew(), 20, 10, 584430, "681277")
+achievement_collect_all_level_coins("Part Time Busker", "Collect every coin in the level \"Subway Surfers\"", 7, coin_total_subway_surfers(), 75, 10, 584432, "681278")
+achievement_collect_all_level_coins("Penguin Pickpocket", "Collect every coin in the level \"Operation: Ship Sneak\"", 8, coin_total_operation_ship_sneak(), 20, 10, 584433, "681279")
+achievement_collect_all_level_coins("Coin Detector", "Collect every coin in the level \"On the Beach\"", 9, coin_total_on_the_beach(), 120, 10, 584436, "681280")
+achievement_collect_all_level_coins("Money Trees", "Collect every coin in the level \"Jungle Dub\"", 10, coin_total_jungle_dub(), 130, 10, 584437, "681281")
+achievement_collect_all_level_coins("We Like to Save It, Save It!", "Collect every coin in the level \"Lemur Liberation\"", 13, coin_total_lemur_liberation(), 75, 10, 584438, "681282")
+achievement_collect_all_level_coins("Wild World of Wealth", "Collect every coin in the level \"Wild World\"", 14, coin_total_wild_world(), 120, 10, 584439, "681283")
+achievement_collect_all_level_coins("Steak Savings", "Collect every coin in the level \"Alex's Escape\"", 16, coin_total_alexs_escape(), 120, 10, 584440, "681284")
+achievement_collect_all_level_coins("Ferry Fare", "Collect every coin in the level \"Island Getaway\"", 18, coin_total_island_getaway(), 120, 10, 584164, "681285")
+achievement_collect_all_level_coins("Super Marty-o", "Collect every coin in the level \"Marty to the Rescue\"", 19, coin_total_marty_to_the_rescue(), 125, 10, 584441, "681286")
+achievement_collect_all_level_coins("This Is What the Foosa Is About", "Collect every coin in the level \"Foosa Lair\"", 21, coin_total_foosa_lair(), 110, 10, 584179, "681287")
 
 
 /* Stealth missions, don't alert guards */
@@ -302,7 +305,10 @@ function achievement_complete_stealth_level_without_alerting_guard(achievement_t
                 ) && 
                 never(current_game_state() == 12) &&
                 never(guard_alert_level() < 5) &&
-                trigger_when(current_game_state() == game_state_level_win)
+                prev(current_game_state() != game_state_level_win) &&
+                trigger_when(
+                    current_game_state() == game_state_level_win
+                )
     )
 }
 
@@ -317,8 +323,11 @@ function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, b
     description = desc,
     id = achievement_id,
     badge = badge_id,
-    trigger = game_mode_selected() == game_mode_bonus && level_selected() == level_id && current_game_state() == game_state_level_win 
-        && best_time_dword < prev(best_time_dword) && best_time_dword < seconds_to_beat
+    trigger =   game_mode_selected() == game_mode_bonus && 
+                level_selected() == level_id && 
+                current_game_state() == game_state_level_win && 
+                prev(best_time_dword) > seconds_to_beat &&
+                best_time_dword <= seconds_to_beat
     )
 }
 
@@ -362,8 +371,11 @@ achievement(
     description = "Beat Melman's record in the bonus level \"Lemur Rave\"",
     id = 584829,
     badge = "716052",
-    trigger = game_mode_selected() == game_mode_bonus && level_selected() == 3 && current_game_state() == game_state_level_win 
-        && best_score_bonus_lemur_rave() > prev(best_score_bonus_lemur_rave()) && best_score_bonus_lemur_rave() > 150
+    trigger =   game_mode_selected() == game_mode_bonus && 
+                level_selected() == 3 && 
+                current_game_state() == game_state_level_win &&
+                prev(best_score_bonus_lemur_rave() < 150) && 
+                best_score_bonus_lemur_rave() >= 150
     )
 
 achievement_beat_character_time_in_bonus_stage(
@@ -426,6 +438,7 @@ achievement(
                 ) &&
                 never(current_game_state() == game_state_level_select) && 
                 never(current_health() < 5) &&
+                prev(current_game_state() != game_state_level_win) && 
                 trigger_when(current_game_state() == game_state_level_win)
 )
 
@@ -444,8 +457,10 @@ achievement(
         ) && 
         never(current_game_state() == game_state_level_select) &&
         never(counter_saved_lemurs_foosa_lair() < prev(counter_saved_lemurs_foosa_lair())) &&
+        prev(current_game_state() != game_state_level_win) && 
         trigger_when(current_game_state() == game_state_level_win) 
 )
+
 
 
 
