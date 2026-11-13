@@ -326,7 +326,7 @@ function achievement_beat_character_time_in_bonus_stage(title, desc, level_id, b
     trigger =   game_mode_selected() == game_mode_bonus && 
                 level_selected() == level_id && 
                 current_game_state() == game_state_level_win && 
-                prev(best_time_dword) > seconds_to_beat &&
+                prev(best_time_dword) >= seconds_to_beat &&
                 best_time_dword < seconds_to_beat
     )
 }
@@ -374,7 +374,7 @@ achievement(
     trigger =   game_mode_selected() == game_mode_bonus && 
                 level_selected() == 3 && 
                 current_game_state() == game_state_level_win &&
-                prev(best_score_bonus_lemur_rave() < 150) && 
+                prev(best_score_bonus_lemur_rave() <= 150) && 
                 best_score_bonus_lemur_rave() > 150
     )
 
