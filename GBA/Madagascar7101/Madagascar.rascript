@@ -303,7 +303,7 @@ function achievement_complete_stealth_level_without_alerting_guard(achievement_t
     )
 }
 
-achievement_complete_stealth_level_without_alerting_guard("Slip and Step Towards Freedom", "Complete \"Operation: Zoo Askew\" without altering any guards. Exit to level select to try again.", 6, 25, 584150, "716057")
+achievement_complete_stealth_level_without_alerting_guard("Slip and Step Towards Freedom", "Complete \"Operation: Zoo Askew\" without alerting any guards. Exit to level select to try again.", 6, 25, 584150, "716057")
 achievement_complete_stealth_level_without_alerting_guard("Slip Through Like Skipper", "Complete \"Operation: Ship Sneak\" without alerting any guards. Exit to level select to try again.", 8, 25, 584577, "716058")
 
 
