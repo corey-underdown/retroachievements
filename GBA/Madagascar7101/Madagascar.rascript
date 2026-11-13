@@ -185,26 +185,17 @@ function is_on_level_select() => current_game_state() == game_state_level_select
 
 /* Rich presence display */
 // Conditional: Playing adventure level
-rich_presence_conditional_display(is_playing_adventure_level(), "{0}{1}{2} is playing adventure level '{3}' - 💰{4}/1,120",
-    rich_presence_macro("ASCIIChar", save_file_initial_1()),
-    rich_presence_macro("ASCIIChar", save_file_initial_2()),
-    rich_presence_macro("ASCIIChar", save_file_initial_3()),
+rich_presence_conditional_display(is_playing_adventure_level(), "Playing adventure level '{0}' - 💰{1}/1,120",
     rich_presence_lookup("AdventureLevel", level_selected(), adventure_levels),
     rich_presence_value("TotalCoins", total_coins_collected_game()))
     
 // Conditional: Playing bonus level
-rich_presence_conditional_display(is_playing_bonus_level(), "{0}{1}{2} is playing bonus level '{3}' - 💰{4}/1,120",
-    rich_presence_macro("ASCIIChar", save_file_initial_1()),
-    rich_presence_macro("ASCIIChar", save_file_initial_2()),
-    rich_presence_macro("ASCIIChar", save_file_initial_3()),
+rich_presence_conditional_display(is_playing_bonus_level(), "Playing bonus level '{0}' - 💰{1}/1,120",
     rich_presence_lookup("BonusLevel", level_selected(), bonus_levels),
     rich_presence_value("TotalCoins", total_coins_collected_game()))
 
 // Conditional: Selected file, not playing level yet (picking level)
-rich_presence_conditional_display(is_on_level_select(), "{0}{1}{2} is selecting a level to play - 💰{3}/1,120",
-    rich_presence_macro("ASCIIChar", save_file_initial_1()),
-    rich_presence_macro("ASCIIChar", save_file_initial_2()),
-    rich_presence_macro("ASCIIChar", save_file_initial_3()),
+rich_presence_conditional_display(is_on_level_select(), "Selecting a level to play - 💰{0}/1,120",
     rich_presence_value("TotalCoins", total_coins_collected_game()))
 
 // Conditional: Fallback, haven't loaded save file yet
